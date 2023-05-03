@@ -1,0 +1,32 @@
+<form method="post" action="/transaction/updateTransactionItem">
+  <input type="hidden" name="itemId" value="<%= item._id %>" />
+  <input
+    type="text"
+    name="description"
+    placeholder="description"
+    value="<%= item.description %>"
+  />
+  <br />
+  <input
+    type="text"
+    name="category"
+    placeholder="category"
+    value="<%= item.category %>"
+  />
+  <br />
+  <input
+    type="text"
+    name="amount"
+    placeholder="amount"
+    value="<%= item.amount %>"
+  />
+  <br />
+  <input
+    type="text"
+    name="date"
+    placeholder="mm/dd/yy"
+    value="<%= item.date %>"
+  />
+  <br />
+  <input type="submit" value="store" />
+</form>

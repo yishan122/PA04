@@ -1,0 +1,87 @@
+<h1>Transactions for <%= user.username %></h1>
+
+<div class="row">
+  <p>Here is your list of Transactions!</p>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>
+          <a class="btn btn-sm btn-primary" href="/transaction/byCategory"
+            >group by category
+          </a>
+        </td>
+        <td>
+            <a class="btn btn-sm btn-primary" href="?sortBy=category"
+              >sort by category
+            </a>
+          </td>
+          <td>
+            <a class="btn btn-sm btn-primary" href="?sortBy=amount"
+              >sort by amount
+            </a>
+          </td>
+          <td>
+            <a class="btn btn-sm btn-primary" href="?sortBy=description"
+              >sort by description
+            </a>
+          </td>
+          <td>
+            <a class="btn btn-sm btn-primary" href="?sortBy=date"
+              >sort by date
+            </a>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>description</th>
+        <th>amount</th>
+        <th>category</th>
+        <th>date</th>
+        <th>delete</th>
+        <th>edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.forEach(item => {%>
+      <tr>
+        <td><%= item.description %></td>
+        <td><%= item.amount %></td>
+        <td><%= item.category %></td>
+        <% let dateFormatted; const array = item.date.toString().split(" ");
+        dateFormatted = array[0] + " " + array[1] + " " + array[2] + " " +
+        array[3]; %>
+        <td><%= dateFormatted %></td>
+        <td>
+          <a href="/transaction/remove/<%=item._id %>">
+            <i class="bi bi-trash"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/transaction/edit/<%=item._id %>">
+            <i class="bi bi-pencil-square"></i>
+          </a>
+        </td>
+      </tr>
+
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <h1>Add a New Transaction</h1>
+  <form method="post" action="transaction">
+    <input type="text" name="description" placeholder="description" />
+    <br />
+    <input type="text" name="category" placeholder="category" />
+    <br />
+    <input type="text" name="amount" placeholder="amount" />
+    <br />
+    <input type="text" name="date" placeholder="mm/dd/yy" />
+    <br />
+    <input type="submit" value="store" />
+  </form>
+</div>
